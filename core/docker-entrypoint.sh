@@ -1,4 +1,8 @@
 #! /bin/bash
+
+VHOST_DOCKER_IP=`/sbin/ip route | awk '/default/ { print $3 }'`
+echo "$VHOST_DOCKER_IP mail" >> /etc/hosts
+
 set -e
 
 function wait_for_postgres () {
@@ -34,7 +38,7 @@ if [[ ! -v MM_HOSTNAME ]]; then
 fi
 
 if [[ ! -v SMTP_HOST ]]; then
-	export SMTP_HOST='172.19.199.1'
+	export SMTP_HOST='mail'
 fi
 
 if [[ ! -v SMTP_PORT ]]; then

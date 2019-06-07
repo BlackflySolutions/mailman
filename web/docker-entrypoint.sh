@@ -1,4 +1,8 @@
 #! /bin/bash
+VHOST_DOCKER_IP=`/sbin/ip route | awk '/default/ { print $3 }'`
+echo "$VHOST_DOCKER_IP mail" >> /etc/hosts
+
+
 set -e
 
 
