@@ -4,8 +4,6 @@ MAINTAINER Abhilash Raj
 
 # Add needed files for uwsgi server + settings for django
 COPY mailman-web /opt/mailman-web
-# Add startup script to container
-COPY docker-entrypoint.sh /usr/local/bin/
 
 # Install packages and dependencies for postorius and hyperkitty Add user for
 # executing apps, change ownership for uwsgi+django files and set execution
@@ -42,6 +40,9 @@ EXPOSE 8000 8080
 
 # Use stop signal for uwsgi server
 STOPSIGNAL SIGINT
+
+# Add startup script to container
+COPY docker-entrypoint.sh /usr/local/bin/
 
 ENTRYPOINT ["docker-entrypoint.sh"]
 

@@ -2,9 +2,6 @@ FROM alpine:3.8
 
 MAINTAINER Abhilash Raj
 
-#Add startup script to container
-COPY docker-entrypoint.sh /usr/local/bin/
-
 #Install all required packages, add user for executing mailman and set execution rights for startup script
 RUN apk update \
 	&& apk add --virtual build-deps gcc python3-dev musl-dev postgresql-dev \
@@ -25,6 +22,9 @@ WORKDIR /opt/mailman
 EXPOSE 8001 8024
 
 ENV MAILMAN_CONFIG_FILE /etc/mailman.cfg
+
+#Add startup script to container
+COPY docker-entrypoint.sh /usr/local/bin/
 
 ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["master", "--force"]
