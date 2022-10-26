@@ -2,7 +2,7 @@ version: '3.4'
 
 services:
   mailman-core:
-    image: mailman-core:0.2
+    image: blackflysolutions/mailman-core:0.2
     build:
       context: ./core
     volumes:
@@ -17,7 +17,7 @@ services:
     - HYPERKITTY_API_KEY=someapikey
 
   mailman-web:
-    image: mailman-web:0.2
+    image: blackflysolutions/mailman-web:0.2
     build:
       context: ./web
     depends_on:
@@ -34,7 +34,7 @@ services:
     - MAILMAN_ADMIN_EMAIL=mailman@civicrm.ca
 
   mailman-webserver:
-    image: mailman-webserver
+    image: blackflysolutions/mailman-webserver
     build:
       context: ./nginx
     depends_on:
